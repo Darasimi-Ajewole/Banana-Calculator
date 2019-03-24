@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Banana Calculator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+	<div class="main">
+		<div class="calc-container">
+			<div class="calc">
+				<form>
+					<span class="calc-title">
+						Banana Calculator 🍌
+					</span>
+					
+					<div class="sliders">
+						<div class="wrapper">
+						<span class="label">Number of Bananas to transport 🍌</span>
+						<input name="banNum" type="range" min="3000" max="10000" value="5000" step="1000">
+						<span class="display">5000</span>
+					</div>
+						
+						<div class="wrapper">
+							<span class="label">Distance to Market(<strong>Km</strong>)🚆</span>
+							<input name="distance" type="range" min="1000" max="10000" value="5000" step="1">
+							<span class="display">5000</span>
+						</div>
+						
+						<div class="wrapper">
+							<span class="label">Banana Cost per Km💲</span>
+							<input name="banCost" type="range" min="1" max="10" step="1" value="5">
+							<span class="display">5</span>
+						</div>
+					</div>
+					
+					<div class="netBan"></div>
+					<div class="tip"></div>	
+					</div>
+				</form>
+			</div>
+		</div>
+	
+	<script src="js/main.js"></script>
+</body>
+</html>
