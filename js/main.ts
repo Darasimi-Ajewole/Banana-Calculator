@@ -1,6 +1,17 @@
 'use strict'
 
+interface InputElementEvent extends Event {
+	target: HTMLInputElement
+}
+
+interface Element {
+    style: CSSStyleDeclaration
+}
+
 class Calculator {
+	banNum: number
+	distance: number
+	banCost: number
 
 	constructor() {
 		this.banNum = 5000;      // amount of bananas from farm
@@ -9,16 +20,16 @@ class Calculator {
 	}
 
 	// updates the front end slider display value
-	updateDisplay(event) {
-		var sliderDisplay = event.target.nextElementSibling;
-		sliderDisplay.textContent = event.target.value;
+	updateDisplay(event: InputElementEvent): void {
+		const target: HTMLInputElement = event.target
+		const sliderDisplay = target.nextElementSibling;
+		sliderDisplay.textContent = target.value;
 	}
 
 	// updates attributes of class
-	updateData(event) {
-		const input = event.target.getAttribute("name");
-		const value = event.target.value;
-
+	updateData(event: InputElementEvent) {
+		const input: string = event.target.getAttribute("name");
+		const value: number = Number(event.target.value);
 		switch (input) {
 			case "banNum":
 				this.banNum = value;
@@ -36,18 +47,18 @@ class Calculator {
 	}
 
 	// compute maximum amount of banana to arrive at  Market
-	computeNetBan() {
+	computeNetBan(): { message: string, tip: string} {
 
-		let movedKm = 0; //	distance covered
-		let expCamels = this.banNum / 1000;	//	number of camels expected to carry banana from farm
-		let distance = this.distance;
-		let banNum = this.banNum;
-		let banCost = this.banCost
+		let movedKm: number = 0; //	distance covered
+		let expCamels: number = this.banNum / 1000;	//	number of camels expected to carry banana from farm
+		let distance: number = this.distance;
+		let banNum: number = this.banNum;
+		let banCost: number = this.banCost
 
-		let message;
-		let tip;
+		let message: string;
+		let tip: string;
 
-		if (distance => banNum) {
+		if (this.distance >= banNum) {
 			message = "No Banana left to sell";
 			tip = "reduce banana cost per KM or distance to Market";
 
@@ -83,14 +94,14 @@ class Calculator {
 	}
 }
 
-function compute(event, calculator) {
+function compute(event: InputElementEvent, calculator: Calculator) {
 	if (event.target.nodeName === "INPUT") {
 		calculator.updateDisplay(event);
 		calculator.updateData(event);
 
-		var netBanValue = calculator.computeNetBan();
-		var netBan = document.querySelector(".netBan");
-		var tip = document.querySelector(".tip");
+		const netBanValue = calculator.computeNetBan();
+		const netBan: Element = document.querySelector(".netBan");
+		const tip = document.querySelector(".tip");
 		netBan.textContent = netBanValue.message;
 		netBan.style.border = "3px solid goldenrod"
 		tip.textContent = `*tip: ${netBanValue.tip}`;
@@ -98,9 +109,9 @@ function compute(event, calculator) {
 }
 
 function main() {
-	var calculator = new Calculator();
-	var sliders = document.querySelector(".sliders");
-	sliders.addEventListener("change", (event) => compute(event, calculator) );
+	const calculator = new Calculator();
+	const sliders = document.querySelector(".sliders");
+	sliders.addEventListener("change", (event) => compute(<InputElementEvent>event, calculator) );
 }
 
 main()
