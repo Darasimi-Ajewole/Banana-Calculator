@@ -1,2 +1,3 @@
 # Banana-Calculator
-A web application developed to solve the popular  camel and banana puzzle. See it live [here](https://shrouded-retreat-20326.herokuapp.com/index.html)
+
+A web application developed to solve the popular  camel and banana puzzle. Kindly clone and run `yarn start` to view locally.
